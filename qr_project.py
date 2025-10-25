@@ -52,7 +52,6 @@ while True:
             print(f"Generating QR code for: {user_input}")
             img_bytes, filepath = generate_qr_code(user_input)
             
-            # Update the image display
             window["-IMAGE-"].update(data=img_bytes)
             
             last_filepath = filepath
@@ -64,13 +63,11 @@ while True:
     
     if event == "Open Folder":
         if last_filepath and os.path.exists(last_filepath):
-            # Open the folder containing the file
             folder = os.path.dirname(last_filepath)
-            os.startfile(folder)  # Windows
-            # For Mac: os.system(f'open "{folder}"')
-            # For Linux: os.system(f'xdg-open "{folder}"')
+            os.startfile(folder)
         else:
             psg.popup("⚠️ Generate a QR code first!")
+
 
 
 window.close()
